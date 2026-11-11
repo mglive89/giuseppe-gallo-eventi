@@ -4,9 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#08090c"><meta name="robots" content="noindex,nofollow">
-<link rel="icon" href="./favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="./apple-touch-icon.png"><link rel="manifest" href="./manifest.webmanifest">
-<title>Dashboard · Giuseppe Gallo</title>
+<link rel="icon" href="./admin-icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="./admin-apple-touch-icon.png"><link rel="manifest" href="./admin.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="GG Admin">
+<title>GG Admin · Flyer Eventi</title>
 <link rel="stylesheet" href="./dashboard.css">
 </head>
 <body>
@@ -17,6 +18,7 @@
 </header>
 <main>
  <section class="hero"><div class="eyebrow">GIUSEPPE GALLO · MTV SOUND PROMOTER</div><h1>Dashboard</h1><p data-t="subtitle">Aggiungi e gestisci i flyer degli eventi. Quelli pubblicati compaiono subito sulla pagina principale.</p></section>
+ <div id="installBox" class="install-box hidden"><div><strong data-t="installTitle">Installa il pannello come app</strong><small id="installHint" data-t="installHintAndroid">Avrai l'icona GG Admin sulla schermata Home, separata dal sito pubblico.</small></div><button id="installBtn" type="button" class="btn gold hidden" data-t="installBtn">Installa</button><button id="installClose" type="button" class="close" aria-label="Chiudi">×</button></div>
  <div id="notice" class="notice hidden" role="status"></div>
  <div id="busy" class="loading hidden"><span class="spinner"></span><span data-t="loading">Caricamento…</span></div>
  <section id="login" class="auth-panel card">
@@ -52,5 +54,17 @@
 <footer><a href="./index.html" data-t="back">Pagina principale</a> · <a href="./impressum.html">Impressum</a> · <a href="./datenschutz.html">Privacy</a></footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 <script type="module" src="./dashboard.js"></script>
+<script>
+(()=>{const box=document.getElementById('installBox'),btn=document.getElementById('installBtn'),hint=document.getElementById('installHint');
+const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+let dismissed=false;try{dismissed=localStorage.getItem('ggAdminInstallDismissed')==='1'}catch{}
+const ios=/iPhone|iPad|iPod/i.test(navigator.userAgent);let prompt=null;
+if(!standalone&&!dismissed){if(ios){hint.dataset.t='installHintIos';hint.textContent='Safari → Condividi → «Aggiungi alla schermata Home». L’icona si chiamerà GG Admin.';box.classList.remove('hidden');}}
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();prompt=e;if(!standalone&&!dismissed){btn.classList.remove('hidden');box.classList.remove('hidden');}});
+btn.addEventListener('click',async()=>{if(!prompt)return;prompt.prompt();await prompt.userChoice;prompt=null;box.classList.add('hidden');});
+document.getElementById('installClose').addEventListener('click',()=>{box.classList.add('hidden');try{localStorage.setItem('ggAdminInstallDismissed','1')}catch{}});
+addEventListener('appinstalled',()=>box.classList.add('hidden'));
+if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('./service-worker.js').catch(()=>{});})();
+</script>
 </body>
 </html>

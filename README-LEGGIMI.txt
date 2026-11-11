@@ -34,3 +34,8 @@ NOTE VERSIONE SOLO EVENTI
 - Usa lo stesso progetto Supabase (tabella events, bucket media): i flyer gia' caricati compaiono anche qui.
 - Gli eventi con 'Nascondi automaticamente' spariscono 6 ore dopo l'orario di inizio.
 - Toccando un flyer sulla homepage si apre a schermo intero.
+
+PANNELLO ADMIN COME APP SEPARATA
+- La Dashboard non e' piu' collegata dalla homepage: si apre solo da https://mglive89.github.io/giuseppe-gallo-eventi/dashboard.html
+- Aprila sul telefono e installala (Android: pulsante Installa; iPhone: Safari > Condividi > Aggiungi alla schermata Home). Comparira' l'icona 'GG Admin', separata dall'app pubblica.
+- Solo l'e-mail amministratore configurata in supabase-config.js puo' entrare; la pagina non e' indicizzata dai motori di ricerca.
