@@ -44,3 +44,9 @@ SECONDO AMMINISTRATORE
 - La Dashboard accetta due e-mail admin (nel codice sono salvate solo come hash SHA-256, in supabase-config.js).
 - Nel campo e-mail della Dashboard scrivi la tua: il dispositivo la ricorda per le volte successive.
 - Perche' il salvataggio funzioni, le policy RLS del progetto Supabase devono includere anche la seconda e-mail (script SQL fornito a parte).
+
+NUOVO DATABASE (11/11/2026)
+- L'app ora usa il progetto Supabase di Marco (maypmqnjkdrdqcssnvty), condiviso con FitQuest ma con tabella e storage separati: gg_events e bucket pubblico gg-media.
+- Gli admin sono definiti nella funzione SQL public.gg_is_admin().
+- I flyer caricati nel vecchio progetto di Giuseppe non vengono trasferiti.
+- Redirect URL da autorizzare: https://mglive89.github.io/giuseppe-gallo-eventi/dashboard.html (Supabase > Auth > URL Configuration).

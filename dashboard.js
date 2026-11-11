@@ -1,4 +1,4 @@
-import { SUPABASE_URL, SUPABASE_PUBLIC_KEY, ADMIN_EMAIL, ADMIN_EMAIL_HASHES } from './supabase-config.js';
+import { SUPABASE_URL, SUPABASE_PUBLIC_KEY, ADMIN_EMAIL, ADMIN_EMAIL_HASHES, EVENTS_TABLE, MEDIA_BUCKET, publicImageUrl } from './supabase-config.js';
 let verifiedEmail=null;
 async function sha256(t){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');}
 async function allowedEmail(e){const x=(e||'').trim().toLowerCase();return !!x&&ADMIN_EMAIL_HASHES.includes(await sha256(x));}
@@ -61,7 +61,7 @@ $('logout').addEventListener('click',async()=>{if(api){await api.auth.signOut();
 async function loadRecords(){if(!api||!isAdmin(user))return;
  busy(true);
  try{
-   const {data,error}=await api.from('events').select('*').order('sort_order',{ascending:true}).order('starts_at',{ascending:true});
+   const {data,error}=await api.from(EVENTS_TABLE).select('*').order('sort_order',{ascending:true}).order('starts_at',{ascending:true});
    if(error)throw error;records.events=data||[];
    updateCounts();await renderList();
  }catch(e){notify(e.message||T('broken'),true)}finally{busy(false);}
@@ -74,8 +74,7 @@ function updateCounts(){
 function node(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;}
 async function getImage(path){
  if(!path||!api)return null;
- const {data,error}=await api.storage.from('media').createSignedUrl(path,3600);
- return error?null:data?.signedUrl||null;
+ return publicImageUrl(path);
 }
 async function renderList(){
  const box=$('items');box.replaceChildren();const data=records[kind];
@@ -131,18 +130,18 @@ $('contentForm').addEventListener('submit',async e=>{
  busy(true);
  try{
   if(file){const ext={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'}[file.type];newPath=`${kind}/${crypto.randomUUID()}.${ext}`;
-    const result=await api.storage.from('media').upload(newPath,file,{contentType:file.type,cacheControl:'3600',upsert:false});if(result.error)throw result.error;
+    const result=await api.storage.from(MEDIA_BUCKET).upload(newPath,file,{contentType:file.type,cacheControl:'3600',upsert:false});if(result.error)throw result.error;
   }
   payload.image_path=newPath||oldPath;
-  const query=editing?api.from(kind).update(payload).eq('id',editing.id):api.from(kind).insert(payload);
+  const query=editing?api.from(EVENTS_TABLE).update(payload).eq('id',editing.id):api.from(EVENTS_TABLE).insert(payload);
   const {data,error}=await query.select().single();if(error)throw error;
-  if(newPath&&oldPath&&newPath!==oldPath)await api.storage.from('media').remove([oldPath]);
+  if(newPath&&oldPath&&newPath!==oldPath)await api.storage.from(MEDIA_BUCKET).remove([oldPath]);
   closeEditor();await loadRecords();notify(T('saved'));
- }catch(err){if(newPath)await api.storage.from('media').remove([newPath]);notify(err.message||T('broken'),true);}finally{busy(false);}
+ }catch(err){if(newPath)await api.storage.from(MEDIA_BUCKET).remove([newPath]);notify(err.message||T('broken'),true);}finally{busy(false);}
 });
-async function togglePublished(item){if(!isAdmin(user))return;busy(true);const {error}=await api.from(kind).update({published:!item.published}).eq('id',item.id);if(error)notify(error.message,true);else {await loadRecords();notify(T('saved'));}busy(false);}
+async function togglePublished(item){if(!isAdmin(user))return;busy(true);const {error}=await api.from(EVENTS_TABLE).update({published:!item.published}).eq('id',item.id);if(error)notify(error.message,true);else {await loadRecords();notify(T('saved'));}busy(false);}
 async function removeItem(item){if(!isAdmin(user)||!confirm(T('areYouSure')))return;busy(true);
- const {error}=await api.from(kind).delete().eq('id',item.id);if(error)notify(error.message,true);else {if(item.image_path)await api.storage.from('media').remove([item.image_path]);await loadRecords();notify(T('deleted'));}busy(false);
+ const {error}=await api.from(EVENTS_TABLE).delete().eq('id',item.id);if(error)notify(error.message,true);else {if(item.image_path)await api.storage.from(MEDIA_BUCKET).remove([item.image_path]);await loadRecords();notify(T('deleted'));}busy(false);
 }
 $('previewItem').addEventListener('click',()=>{
  const box=$('previewBody');box.replaceChildren();const image=$('photoPreview');if(!image.classList.contains('hidden')&&image.src){const img=node('img');img.src=image.src;box.append(img)}

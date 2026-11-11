@@ -1,24 +1,12 @@
-import { SUPABASE_URL, BASE_HEADERS } from './supabase-config.js';
+import { SUPABASE_URL, BASE_HEADERS, EVENTS_TABLE, publicImageUrl } from './supabase-config.js';
 const grid = document.querySelector('#event-grid');
 const empty = document.querySelector('#event-empty');
 let events = [];
-const signedCache = new Map();
 function lang(){ return window.getSiteLang?.() === 'it' ? 'it' : 'de'; }
 function safeExternal(url){ try { const u = new URL(url); return u.protocol === 'https:' ? u.href : null; } catch { return null; } }
 async function signedImage(path){
   if(!path || !/^events\/[A-Za-z0-9_./-]+$/.test(path) || path.includes('..')) return null;
-  const hit = signedCache.get(path);
-  if(hit && hit.expiry > Date.now()) return hit.url;
-  try {
-    const res = await fetch(`${SUPABASE_URL}/storage/v1/object/sign/media/${path.split('/').map(encodeURIComponent).join('/')}`, {
-      method:'POST', headers:{...BASE_HEADERS,'Content-Type':'application/json'}, body:JSON.stringify({expiresIn:3600})
-    });
-    if(!res.ok) return null;
-    const value = await res.json(); let url = value.signedURL || value.signedUrl;
-    if(!url) return null;
-    if(url.startsWith('/')) url = SUPABASE_URL + url;
-    signedCache.set(path, {url, expiry: Date.now() + 3000000}); return url;
-  } catch { return null; }
+  return publicImageUrl(path);
 }
 function el(tag, cls, text){ const n = document.createElement(tag); if(cls) n.className = cls; if(text !== undefined) n.textContent = text; return n; }
 const S = {
@@ -59,7 +47,7 @@ async function render(){
 }
 async function load(){
   try{
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/events?select=*&published=eq.true&order=sort_order.asc,starts_at.asc&limit=100`, {headers:BASE_HEADERS, cache:'no-store'});
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/${EVENTS_TABLE}?select=*&published=eq.true&order=sort_order.asc,starts_at.asc&limit=100`, {headers:BASE_HEADERS, cache:'no-store'});
     if(!res.ok) throw new Error(`HTTP ${res.status}`);
     events = await res.json(); await render();
   }catch(e){

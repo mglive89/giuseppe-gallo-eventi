@@ -1,4 +1,4 @@
-const CACHE='giuseppe-gallo-eventi-v3-20261111';
+const CACHE='giuseppe-gallo-eventi-v4-20261111';
 const PRECACHE=['./','./index.html','./manifest.webmanifest','./poster-4k.webp','./mtv-sound-logo.jpg','./icon-192.png','./icon-512.png','./apple-touch-icon.png','./favicon.png','./dashboard.html','./admin.webmanifest','./admin-icon-192.png','./admin-icon-512.png','./admin-apple-touch-icon.png','./dashboard.css','./dashboard.js','./catalog.js','./supabase-config.js','./guide-iphone-1.svg','./guide-iphone-2.svg','./guide-iphone-3.svg','./guide-android-1.svg','./guide-android-2.svg','./guide-android-3.svg','./impressum.html','./datenschutz.html'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(PRECACHE)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()));});
