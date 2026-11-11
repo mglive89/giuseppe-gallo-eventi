@@ -1,0 +1,2 @@
+Metti qui i volantini .jpg .png .webp e aggiungili al file events.json.
+Per esempio: events/locandina.jpg

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#08090c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Giuseppe Gallo">
+  <meta name="description" content="Giuseppe Gallo – MTV Sound Promoter. Veranstaltungspromotion und Werbung in Deutschland und Italien. Kontakt per WhatsApp, Instagram, TikTok, Facebook und E-Mail.">
+  <meta property="og:title" content="Giuseppe Gallo | MTV Sound Promoter">
+  <meta property="og:description" content="Veranstaltungen & Werbung · Deutschland & Italien">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="poster-original.jpg">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="./favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="preload" as="image" href="./poster-4k.webp" type="image/webp">
+  <title>Giuseppe Gallo · MTV Sound Promoter</title>
+<style>
+:root{color-scheme:dark;--gold:#d9b76c;--gold2:#ffdfa0;--bg:#06070b;--muted:#c6b894;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+*,*:before,*:after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;overscroll-behavior-y:none;background:var(--bg)}
+body{margin:0;color:#f7f1e4;background:radial-gradient(circle at 48% 40%,#30271f 0%,#08090e 56%,#05060a 100%);min-height:100svh;touch-action:pan-y;-webkit-tap-highlight-color:transparent}
+button,a{touch-action:manipulation}button{font:inherit}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--gold2);outline-offset:3px}
+.app-header{height:72px;min-height:72px;max-width:980px;margin:auto;padding:10px 14px;display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;position:relative;z-index:2}
+.flags{display:flex;gap:6px;align-items:center}.flag{appearance:none;border:1px solid #5b5242;border-radius:13px;background:#171717;padding:5px 7px;min-width:49px;min-height:45px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;color:#f7e9c9;font-weight:700;box-shadow:0 2px 12px #0008}
+.flag[data-active="true"]{border-color:var(--gold2);box-shadow:inset 0 0 0 1px #a67b35,0 0 13px #dbaa4463}.flag .symbol{font-size:24px;line-height:1}
+.brand-link{display:flex;align-items:center;gap:7px;min-height:45px;padding:3px 10px 3px 4px;border:1px solid #6c5631;background:linear-gradient(125deg,#22201e,#0c0c10);border-radius:50px;color:#f6dfa7;text-decoration:none;font-size:12px;font-weight:750;box-shadow:0 3px 16px #0007;white-space:nowrap}
+.brand-link img{height:39px;width:39px;object-fit:cover;border-radius:50%;border:1px solid #bd9f61}.brand-link span{max-width:100px;line-height:1.1}
+.info{border:1px solid #aa874b;border-radius:14px;background:linear-gradient(#42331c,#171511);color:#ffe7ad;min-height:46px;min-width:62px;font-weight:750;font-size:14px;cursor:pointer}
+main{max-width:980px;margin:0 auto;padding:0 10px 42px}
+.poster-viewport{display:flex;align-items:center;justify-content:center;min-height:calc(100svh - 100px)}
+.poster-stage{position:relative;width:min(calc(100vw - 20px), calc((100svh - 116px) * .75), 810px);aspect-ratio:3/4;flex:none;box-shadow:0 14px 55px #000b;border:1px solid #4e402d;border-radius:2px;overflow:hidden;background:#050505}
+.poster-stage img{width:100%;height:100%;display:block;object-fit:fill;user-select:none;-webkit-user-drag:none;pointer-events:none}
+.hotspot{position:absolute;z-index:1;border-radius:10px;text-decoration:none;display:block;cursor:pointer;outline-offset:-3px}
+.hotspot:hover{box-shadow:inset 0 0 0 2px #fff8,0 0 10px #ffc74a88}
+.hotspot.wa{left:3%;top:70.4%;width:23.5%;height:7.3%}
+.hotspot.ig{left:26.5%;top:70.4%;width:22.6%;height:7.3%}
+.hotspot.tt{left:49.1%;top:70.4%;width:22%;height:7.3%}
+.hotspot.fb{left:71.1%;top:70.4%;width:24%;height:7.3%}
+.hotspot.email{left:18.3%;top:89.7%;width:61%;height:5.1%;border-radius:7px}
+.poster-caption{text-align:center;margin:10px 0 4px;font-size:12px;line-height:1.35;color:#dbc28b;letter-spacing:.05em}
+.bottom-panel{max-width:770px;margin:10px auto 0;border:1px solid #534123;border-radius:16px;background:#0f1015dd;overflow:hidden}
+.accordion summary{font-weight:700;cursor:pointer;padding:16px 18px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px}.accordion summary::-webkit-details-marker{display:none}.accordion summary:after{content:'⌄';font-size:22px;color:var(--gold)}.accordion[open] summary:after{transform:rotate(180deg)}
+.event-content{padding:0 18px 17px}.event-empty{color:#bdb8ac;font-size:14px;margin:0}
+.event-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:13px}.event-item{border:1px solid #493c26;border-radius:12px;overflow:hidden;background:#151312;text-decoration:none;color:white}.event-item img{width:100%;aspect-ratio:3/4;object-fit:contain;background:#050505;display:block}.event-item h3{font-size:14px;margin:9px 10px 3px}.event-item p{font-size:12px;margin:0 10px 12px;color:#ddca99}
+footer{max-width:770px;margin:14px auto 10px;color:#bbb0a0;font-size:12px;text-align:center;line-height:1.6}
+footer a{color:#dcc48e}footer .footer-mail{color:#f4d992}
+.dialog{width:min(94vw,580px);max-height:min(90dvh,840px);overflow:auto;background:#101015;border:1px solid #95733e;color:#f9f1df;border-radius:20px;box-shadow:0 25px 90px #000d;padding:0}
+.dialog::backdrop{background:#030305cc;backdrop-filter:blur(6px)}
+.dialog-head{position:sticky;top:0;z-index:2;background:#151317;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #5c4628}
+.dialog h2{font-size:21px;margin:0;color:#f4d696}.close{background:#26201b;color:#f6e5c0;border:1px solid #7d6135;border-radius:50%;height:37px;width:37px;font-size:21px;cursor:pointer}
+.dialog-body{padding:18px}.dialog-body h3{font-size:19px;margin:0 0 8px}.dialog-body .desc{font-size:14px;line-height:1.55;color:#d6d1c7;margin:0 0 18px}
+.platform-tabs{display:flex;gap:8px;margin:0 0 18px}.platform-tabs button{flex:1;color:#f7e1ba;border:1px solid #68512f;border-radius:11px;padding:10px 4px;background:#1b1918;cursor:pointer}.platform-tabs button[aria-selected=true]{background:#795629;color:#fff;border-color:#d4ae60}
+.step-card{display:grid;grid-template-columns:105px 1fr;align-items:center;gap:12px;background:#1c1b20;border:1px solid #51412d;border-radius:13px;padding:10px;margin-bottom:12px}
+.step-card img{width:100%;height:auto;max-height:133px;object-fit:contain}.step-card p{margin:0;font-size:14px;line-height:1.5}.step-card strong{display:block;color:#f5d79c;margin-bottom:3px}
+.install-button{margin:7px 0 10px;padding:12px 16px;border-radius:12px;border:1px solid #e5c285;background:linear-gradient(115deg,#d1ac65,#89642d);color:#100d09;font-weight:800;cursor:pointer;width:100%}.hidden{display:none!important}
+@media(max-width:420px){.app-header{height:66px;min-height:66px;padding:7px 10px;gap:7px}.flag{min-width:42px;padding:5px 6px}.flag .symbol{font-size:21px}.brand-link{padding-right:7px;font-size:10px}.brand-link img{width:35px;height:35px}.brand-link span{max-width:79px}.info{min-width:52px}.poster-viewport{min-height:calc(100svh - 94px)}.poster-stage{width:min(calc(100vw - 12px), calc((100svh - 104px) * .75), 810px)}}
+@media(max-height:620px) and (orientation:landscape){.poster-viewport{min-height:0}.poster-stage{width:min(70vw,600px)}.poster-caption{margin-top:9px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* Homepage: event flyers and recommended venue business cards */
+.page-links{display:flex;justify-content:center;align-items:center;gap:10px;max-width:770px;margin:8px auto 16px;padding:0 5px;flex-wrap:wrap}
+.page-links a{background:linear-gradient(135deg,#272119,#121215);border:1px solid #806138;color:#fae0aa;font-weight:700;text-decoration:none;padding:10px 16px;border-radius:40px;font-size:13px}
+.page-links a:focus-visible,.page-links a:hover{background:#55381b}
+.panel-intro{max-width:770px;margin:30px auto 12px;text-align:center;color:#f5dba0}
+.panel-intro h2{font-size:clamp(21px,4vw,29px);font-family:Georgia,serif;margin:3px 0 8px;letter-spacing:.025em}
+.panel-intro p{font-size:14px;color:#bcb2a0;margin:0}
+.feature-panel{max-width:770px;margin:12px auto 16px;border:1px solid #655037;border-radius:18px;background:linear-gradient(140deg,#191711,#101116);overflow:hidden;box-shadow:0 9px 25px #0005}
+.feature-panel summary{padding:18px 20px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-weight:750;color:#f2dbaf;font-size:18px}
+.feature-panel summary::-webkit-details-marker{display:none}
+.feature-panel summary:after{content:'⌄';font-size:23px;transition:transform .2s}
+.feature-panel[open] summary:after{transform:rotate(180deg)}
+.panel-inner{padding:2px 18px 20px}
+.panel-empty{text-align:center;color:#bcb6a9;background:#201b13;border-radius:13px;padding:23px 17px;font-size:14px;border:1px dashed #644b28}
+.panel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr));gap:14px}
+.flyer-card,.venue-card{border:1px solid #5c452a;background:#0e0d0d;border-radius:14px;overflow:hidden}
+.flyer-card img{width:100%;aspect-ratio:3/4;object-fit:contain;display:block;background:#050505}
+.venue-card img{width:100%;aspect-ratio:1.6;object-fit:contain;display:block;background:#070708}
+.card-body{padding:14px}.card-body h3{font-size:16px;color:#fae4b6;margin:0 0 6px}.card-body p{margin:0 0 9px;color:#d3c7b0;font-size:13px;line-height:1.45}
+.card-link{display:inline-block;color:#15100b;background:#e2bc77;border-radius:10px;padding:9px 12px;font-size:13px;font-weight:750;text-decoration:none}
+@media(max-width:440px){.page-links{gap:6px;margin-top:7px}.page-links a{padding:9px 10px;font-size:12px}.feature-panel summary{padding:16px}.panel-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.card-body{padding:10px}.card-body h3{font-size:14px}.card-body p{font-size:12px}.panel-inner{padding:0 10px 16px}}
+
+.flyer-open{display:block;cursor:zoom-in}.card-actions{display:flex;flex-wrap:wrap;gap:7px}.card-actions:empty{display:none}
+.feature-panel{scroll-margin-top:20px}
+</style>
+</head>
+<body>
+<header class="app-header">
+  <nav class="flags" aria-label="Sprache / Lingua">
+    <button class="flag" id="lang-de" data-active="true" aria-label="Deutsch" title="Deutsch" type="button"><span class="symbol" aria-hidden="true">🇩🇪</span><span>DE</span></button>
+    <button class="flag" id="lang-it" data-active="false" aria-label="Italiano" title="Italiano" type="button"><span class="symbol" aria-hidden="true">🇮🇹</span><span>IT</span></button>
+  </nav>
+  <a class="brand-link" href="https://www.instagram.com/mtvsound.events?rpxt=MTBobGp2ZTEyYWdvNg==" target="_blank" rel="noopener noreferrer" aria-label="MTV Sound Stuttgart – Instagram">
+    <img src="./mtv-sound-logo.jpg" alt="MTV Sound – Musica Italiana in Germania"><span>MTV Sound<br>Stuttgart</span>
+  </a>
+  <button class="info" id="open-info" type="button" data-i18n="info" aria-haspopup="dialog">Info ⓘ</button>
+</header>
+<main>
+  <div class="poster-viewport">
+    <div class="poster-stage" role="group" aria-label="Giuseppe Gallo MTV Sound Promoter – Poster und Kontakte">
+      <img src="./poster-4k.webp" alt="Giuseppe Gallo, MTV Sound Promoter, Veranstaltungen und Werbung, Deutschland und Italien" width="3072" height="4096" fetchpriority="high" draggable="false">
+      <a class="hotspot wa" href="https://wa.me/491639785037" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp: +49 163 9785037" title="WhatsApp"></a>
+      <a class="hotspot ig" href="https://www.instagram.com/giuseppe.gallo.505960?xtok=MWs2YnI3OTdtNXRheA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram: Giuseppe Gallo" title="Instagram"></a>
+      <a class="hotspot tt" href="https://www.tiktok.com/@giuseppegallo1981?_r=1&amp;_t=ZG-9Az8hW9fFr7" target="_blank" rel="noopener noreferrer" aria-label="TikTok: @giuseppegallo1981" title="TikTok"></a>
+      <a class="hotspot fb" href="https://www.facebook.com/share/18WK3yNREg/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook: Giuseppe Gallo" title="Facebook"></a>
+      <a class="hotspot email" href="mailto:Peppegallo812329@gmail.com" aria-label="E-Mail: Peppegallo812329@gmail.com" title="E-Mail"></a>
+    </div>
+  </div>
+  <p class="poster-caption" data-i18n="caption">Deutschland & Italien · Events und Promotion</p>
+  <nav class="page-links" aria-label="Sezioni / Bereiche">
+    <a href="#events" id="link-events" data-i18n="eventsMenu">📅 Events</a>
+    <a href="#info-dialog" id="link-info" data-i18n="guideMenu">ⓘ App speichern</a>
+  </nav>
+  <div class="panel-intro"><h2 data-i18n="discoverTitle">Events & Flyer</h2><p data-i18n="discoverDesc">Entdecke die nächsten Veranstaltungen.</p></div>
+  <details class="feature-panel" id="events" open>
+    <summary><span data-i18n="events">📅 Nächste Veranstaltungen und Flyer</span></summary>
+    <div class="panel-inner"><div class="panel-empty" id="event-empty" data-count="0" data-i18n="noEvents">Neue Veranstaltungstermine folgen in Kürze.</div><div class="panel-grid" id="event-grid"></div></div>
+  </details>
+  <footer>
+    <span data-i18n="contact">Direktkontakt:</span> <a class="footer-mail" href="mailto:Peppegallo812329@gmail.com">Peppegallo812329@gmail.com</a>
+    <span> · </span><a href="./dashboard.html" data-i18n="adminLink">Dashboard</a><span> · </span><a href="./impressum.html" data-i18n="impressum">Impressum</a><span> · </span><a href="./datenschutz.html" data-i18n="privacy">Datenschutz</a>
+  </footer>
+</main>
+<dialog id="info-dialog" class="dialog" aria-labelledby="info-title">
+  <div class="dialog-head"><h2 id="info-title" data-i18n="infoTitle">Info · Meine App speichern</h2><button type="button" class="close" id="close-info" aria-label="Schließen / Chiudi">×</button></div>
+  <div class="dialog-body">
+    <h3 data-i18n="saveApp">Meine App speichern</h3>
+    <p class="desc" data-i18n="saveIntro">Du kannst diese Seite wie eine App auf deinem Home-Bildschirm speichern – ohne App Store oder Play Store. Öffne dazu die veröffentlichte HTTPS-Webadresse in deinem Browser.</p>
+    <div class="platform-tabs" role="tablist" aria-label="iOS / Android">
+      <button id="ios-tab" type="button" role="tab" aria-selected="true" aria-controls="ios-steps"> iPhone / iPad</button>
+      <button id="android-tab" type="button" role="tab" aria-selected="false" aria-controls="android-steps">🤖 Android</button>
+    </div>
+    <div id="ios-steps" role="tabpanel" aria-labelledby="ios-tab">
+      <div class="step-card"><img src="./guide-iphone-1.svg" alt="Safari Teilen Symbol" loading="lazy"><p><strong data-i18n="ios1Title">1. In Safari öffnen</strong><span data-i18n="ios1">Öffne den Webseiten-Link in Safari und tippe auf „Teilen“ (Quadrat mit Pfeil nach oben).</span></p></div>
+      <div class="step-card"><img src="./guide-iphone-2.svg" alt="Zum Home-Bildschirm hinzufügen" loading="lazy"><p><strong data-i18n="ios2Title">2. Zum Home-Bildschirm</strong><span data-i18n="ios2">Wähle „Zum Home-Bildschirm“ bzw. „Zum Home-Bildschirm hinzufügen“ aus dem Teilen-Menü.</span></p></div>
+      <div class="step-card"><img src="./guide-iphone-3.svg" alt="Hinzufügen bestätigen" loading="lazy"><p><strong data-i18n="ios3Title">3. Hinzufügen</strong><span data-i18n="ios3">Bestätige mit „Hinzufügen“. Das goldene GG-Symbol erscheint auf deinem Home-Bildschirm.</span></p></div>
+    </div>
+    <div id="android-steps" role="tabpanel" aria-labelledby="android-tab" class="hidden">
+      <div class="step-card"><img src="./guide-android-1.svg" alt="Chrome Drei-Punkte-Menü" loading="lazy"><p><strong data-i18n="android1Title">1. In Chrome öffnen</strong><span data-i18n="android1">Öffne den Webseiten-Link in Chrome und tippe oben rechts auf ⋮.</span></p></div>
+      <div class="step-card"><img src="./guide-android-2.svg" alt="App installieren Menüpunkt" loading="lazy"><p><strong data-i18n="android2Title">2. App installieren</strong><span data-i18n="android2">Wähle „App installieren“ oder „Zum Startbildschirm hinzufügen“.</span></p></div>
+      <div class="step-card"><img src="./guide-android-3.svg" alt="Installation bestätigen" loading="lazy"><p><strong data-i18n="android3Title">3. Bestätigen</strong><span data-i18n="android3">Bestätige und öffne die App anschließend über das GG-Symbol.</span></p></div>
+      <button id="native-install" class="install-button hidden" data-i18n="installNow" type="button">App jetzt installieren</button>
+    </div>
+    <p class="desc" data-i18n="offlineNote">Hinweis: Bei der ersten Nutzung ist eine Internetverbindung nötig. Bereits geladene Seiten können danach auch offline geöffnet werden; externe Kontaktlinks benötigen Internet.</p>
+  </div>
+</dialog>
+<script>
+(() => {
+'use strict';
+const T = {
+  de: {
+    info:'Info ⓘ', infoTitle:'Info · Meine App speichern', saveApp:'Meine App speichern', saveIntro:'Speichere diese Seite wie eine App auf deinem Home-Bildschirm – ohne App Store oder Play Store. Öffne dazu die öffentliche HTTPS-Webadresse im Browser.', caption:'Deutschland & Italien · Events und Promotion', events:'📅 Nächste Veranstaltungen und Flyer', eventsMenu:'📅 Events',guideMenu:'ⓘ App speichern',discoverTitle:'Events & Flyer', discoverDesc:'Entdecke die nächsten Veranstaltungen.', adminLink:'Dashboard', noEvents:'Neue Veranstaltungstermine folgen in Kürze.', contact:'Direktkontakt:', impressum:'Impressum',privacy:'Datenschutz',
+    ios1Title:'1. In Safari öffnen',ios1:'Öffne die Webseite in Safari und tippe auf das Teilen-Symbol (Quadrat mit Pfeil nach oben).',ios2Title:'2. Zum Home-Bildschirm',ios2:'Wähle „Zum Home-Bildschirm“ bzw. „Zum Home-Bildschirm hinzufügen“ aus dem Teilen-Menü.',ios3Title:'3. Hinzufügen',ios3:'Bestätige mit „Hinzufügen“. Das goldene GG-Symbol erscheint auf deinem Home-Bildschirm.',
+    android1Title:'1. In Chrome öffnen',android1:'Öffne die Webseite in Chrome und tippe auf das Menü ⋮.',android2Title:'2. App installieren',android2:'Wähle „App installieren“ oder „Zum Startbildschirm hinzufügen“.',android3Title:'3. Bestätigen',android3:'Bestätige und starte die App später über das GG-Symbol.',installNow:'App jetzt installieren',offlineNote:'Die erste Nutzung benötigt Internet. Gespeicherte Inhalte können danach offline angezeigt werden; Social-Media-Links benötigen eine Verbindung.'
+  },
+  it: {
+    info:'Info ⓘ',infoTitle:'Info · Salva la mia app',saveApp:'Salva la mia app',saveIntro:'Puoi salvare questa pagina sulla schermata Home come un’app, senza App Store o Play Store. Apri l’indirizzo HTTPS pubblico nel browser.',caption:'Italia e Germania · Eventi e promozione',events:'📅 Prossimi eventi e volantini', eventsMenu:'📅 Eventi',guideMenu:'ⓘ Salva l’app',discoverTitle:'Eventi e flyer', discoverDesc:'Scopri i prossimi eventi.', adminLink:'Dashboard',noEvents:'I prossimi eventi saranno pubblicati qui.',contact:'Contatto diretto:',impressum:'Note legali',privacy:'Privacy',
+    ios1Title:'1. Apri con Safari',ios1:'Apri il sito in Safari e tocca Condividi (quadrato con freccia verso l’alto).',ios2Title:'2. Aggiungi a Home',ios2:'Nel menu di condivisione seleziona “Aggiungi alla schermata Home”.',ios3Title:'3. Conferma',ios3:'Tocca “Aggiungi”. L’icona GG apparirà sulla schermata Home.',
+    android1Title:'1. Apri con Chrome',android1:'Apri il sito in Chrome e tocca il menu ⋮ in alto.',android2Title:'2. Installa l’app',android2:'Seleziona “Installa app” oppure “Aggiungi a schermata Home”.',android3Title:'3. Conferma',android3:'Conferma. Poi avvia l’app dalla nuova icona GG.',installNow:'Installa l’app adesso',offlineNote:'Per il primo accesso serve Internet. In seguito alcuni contenuti saranno disponibili offline; i collegamenti social richiedono una connessione.'
+  }
+};
+let lang='de'; let deferredPrompt=null;
+const applyLanguage=(l)=>{lang=l;document.documentElement.lang=l;document.querySelectorAll('[data-i18n]').forEach(el=>{const s=T[l][el.dataset.i18n];if(s)el.textContent=s});document.querySelectorAll('.flag').forEach(b=>{b.dataset.active=String(b.id==='lang-'+l);b.setAttribute('aria-pressed',String(b.id==='lang-'+l))});document.title=l==='de'?'Giuseppe Gallo · MTV Sound Promoter':'Giuseppe Gallo · Promoter di eventi';const description=document.querySelector('meta[name=description]');description.content=l==='de'?'Giuseppe Gallo: Eventpromotion und Werbung in Deutschland und Italien.':'Giuseppe Gallo: promozione eventi e pubblicità in Italia e Germania.'; const empty=document.getElementById('event-empty');if(empty.dataset.count==='0')empty.textContent=T[l].noEvents;window.dispatchEvent(new Event('site-language-changed'));};
+document.getElementById('lang-de').addEventListener('click',()=>applyLanguage('de'));
+document.getElementById('lang-it').addEventListener('click',()=>applyLanguage('it'));
+document.getElementById('link-info').addEventListener('click',e=>{e.preventDefault();document.getElementById('info-dialog').showModal()});
+['link-events'].forEach(id=>document.getElementById(id).addEventListener('click',()=>{const x=document.querySelector(document.getElementById(id).getAttribute('href'));x.open=true;}));
+const dlg=document.getElementById('info-dialog');document.getElementById('open-info').addEventListener('click',()=>dlg.showModal());document.getElementById('close-info').addEventListener('click',()=>dlg.close());dlg.addEventListener('click',(e)=>{if(e.target===dlg)dlg.close();});
+const tab=(name)=>{['ios','android'].forEach(p=>{const selected=p===name;document.getElementById(p+'-tab').setAttribute('aria-selected',String(selected));document.getElementById(p+'-steps').classList.toggle('hidden',!selected);});};
+document.getElementById('ios-tab').addEventListener('click',()=>tab('ios'));document.getElementById('android-tab').addEventListener('click',()=>tab('android'));
+const isAndroid=/Android/i.test(navigator.userAgent);if(isAndroid)tab('android');
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('native-install').classList.remove('hidden');});
+document.getElementById('native-install').addEventListener('click',async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;document.getElementById('native-install').classList.add('hidden');});
+// Remote content is rendered by catalog.js using the public, read-only Supabase API.
+window.getSiteLang=()=>lang;
+window.addEventListener('catalog-refresh',()=>{});
+// Respect the requested no-pinch/no-double-tap zoom on mobile.
+document.addEventListener('gesturestart',e=>e.preventDefault(),{passive:false});
+let lastTouch=0;document.addEventListener('touchend',e=>{const now=Date.now();if(now-lastTouch<290&&e.cancelable)e.preventDefault();lastTouch=now;},{passive:false});
+if('serviceWorker' in navigator && (location.protocol==='https:'||location.hostname==='localhost'))navigator.serviceWorker.register('./service-worker.js').catch(()=>{});
+applyLanguage('de');
+})();
+</script>
+<script type="module" src="./catalog.js"></script>
+</body>
+</html>
