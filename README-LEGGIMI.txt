@@ -39,3 +39,8 @@ PANNELLO ADMIN COME APP SEPARATA
 - La Dashboard non e' piu' collegata dalla homepage: si apre solo da https://mglive89.github.io/giuseppe-gallo-eventi/dashboard.html
 - Aprila sul telefono e installala (Android: pulsante Installa; iPhone: Safari > Condividi > Aggiungi alla schermata Home). Comparira' l'icona 'GG Admin', separata dall'app pubblica.
 - Solo l'e-mail amministratore configurata in supabase-config.js puo' entrare; la pagina non e' indicizzata dai motori di ricerca.
+
+SECONDO AMMINISTRATORE
+- La Dashboard accetta due e-mail admin (nel codice sono salvate solo come hash SHA-256, in supabase-config.js).
+- Nel campo e-mail della Dashboard scrivi la tua: il dispositivo la ricorda per le volte successive.
+- Perche' il salvataggio funzioni, le policy RLS del progetto Supabase devono includere anche la seconda e-mail (script SQL fornito a parte).

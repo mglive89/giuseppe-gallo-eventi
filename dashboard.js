@@ -1,4 +1,8 @@
-import { SUPABASE_URL, SUPABASE_PUBLIC_KEY, ADMIN_EMAIL } from './supabase-config.js';
+import { SUPABASE_URL, SUPABASE_PUBLIC_KEY, ADMIN_EMAIL, ADMIN_EMAIL_HASHES } from './supabase-config.js';
+let verifiedEmail=null;
+async function sha256(t){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+async function allowedEmail(e){const x=(e||'').trim().toLowerCase();return !!x&&ADMIN_EMAIL_HASHES.includes(await sha256(x));}
+function loginEmail(){return $('loginEmail').value.trim().toLowerCase();}
 const $=id=>document.getElementById(id);
 let api=null, user=null, kind='events', lang='it', selected=null, records={events:[]}, editing=null, existingImage=null;
 const COPY={
@@ -13,7 +17,7 @@ function dateLocal(d){if(!d)return '';const x=new Date(d);return isNaN(x)?'':new
 function safeUrl(s){const x=(s||'').trim();if(!x)return null;try{const url=new URL(x);return url.protocol==='https:'?url.href:null;}catch{return null;}}
 function setLang(l){lang=l;document.documentElement.lang=l;document.querySelectorAll('[data-t]').forEach(el=>{el.textContent=T(el.dataset.t);});document.querySelectorAll('.lng').forEach(x=>{x.classList.toggle('active',x.dataset.lang===l);x.setAttribute('aria-pressed',String(x.dataset.lang===l));});if(user)renderList();}
 for(const b of document.querySelectorAll('.lng'))b.addEventListener('click',()=>setLang(b.dataset.lang));
-function isAdmin(u){return !!u?.email && u.email.toLowerCase()===ADMIN_EMAIL;}
+function isAdmin(u){return !!u?.email && u.email.toLowerCase()===verifiedEmail;}
 async function start(){
   if(!window.supabase?.createClient){notify('La libreria di accesso non è disponibile: verifica la connessione Internet.',true);return;}
   api=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLIC_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
@@ -23,6 +27,7 @@ async function start(){
 async function setSession(u){
   user=u;
   if(!u){show('login',true);show('admin',false);return;}
+  verifiedEmail=(await allowedEmail(u.email))?u.email.toLowerCase():null;
   if(!isAdmin(u)){show('admin',false);show('login',true);notify(T('notAdmin'),true);return;}
   $('accountEmail').textContent=u.email;
   show('login',false);show('admin',true);
@@ -30,13 +35,15 @@ async function setSession(u){
 }
 $('loginForm').addEventListener('submit',async e=>{
  e.preventDefault();if(!api){notify(T('broken'),true);return;}
- busy(true);const email=ADMIN_EMAIL;
+ const email=loginEmail();if(!(await allowedEmail(email))){notify(T('notAdmin'),true);return;}
+ try{localStorage.setItem('ggAdminEmail',email)}catch{}
+ busy(true);
  const {error}=await api.auth.signInWithOtp({email,options:{emailRedirectTo:window.location.origin+new URL('./dashboard.html',location.href).pathname,shouldCreateUser:true}});
  busy(false);notify(error?error.message:T('linkSent'),!!error);
 });
 $('otpForm').addEventListener('submit',async e=>{
   e.preventDefault();const token=$('otpCode').value.trim();if(!token||!api)return;
-  busy(true);const {error}=await api.auth.verifyOtp({email:ADMIN_EMAIL,token,type:'email'});busy(false);notify(error?error.message:T('connected'),!!error);
+  busy(true);const {error}=await api.auth.verifyOtp({email:loginEmail(),token,type:'email'});busy(false);notify(error?error.message:T('connected'),!!error);
 });
 $('pasteForm').addEventListener('submit',async e=>{
   e.preventDefault();if(!api)return;
@@ -146,4 +153,5 @@ $('previewItem').addEventListener('click',()=>{
 $('previewClose').addEventListener('click',()=>show('previewModal',false));$('previewModal').addEventListener('click',e=>{if(e.target===$('previewModal'))show('previewModal',false)});
 window.addEventListener('keydown',e=>{if(e.key==='Escape')show('previewModal',false)});
 setLang('it');
+try{const saved=localStorage.getItem('ggAdminEmail');if(saved)$('loginEmail').value=saved;}catch{}
 window.addEventListener('load',start);
